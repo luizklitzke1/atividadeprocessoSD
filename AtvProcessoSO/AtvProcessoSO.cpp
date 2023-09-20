@@ -1,4 +1,4 @@
-//Autor: Luiz G Klitzke
+//Autor: Liz G Klitzke
 
 #include <iostream>
 #include <vector>
@@ -7,20 +7,20 @@
 
 using namespace std;
 
-unsigned int uiTotalUnidades = 0;
-unsigned int uiProcessos     = 0;
-unsigned int uiSaldo         = 0;
-vector<pair<unsigned int, unsigned int>> aDados;
+ int iTotalUnidades = 0;
+ int iProcessos     = 0;
+ int iSaldo         = 0;
+vector<pair< int,  int>> aDados;
 
 void Mostra()
 {
     cout << endl << endl;
-    cout << "Saldo: " << uiSaldo << endl;
+    cout << "Saldo: " << iSaldo << endl;
     cout << "Pr\tT\tM\t" << endl;
 
-    for (int i = 0; i < uiProcessos; i++)
+    for (int i = 0; i < iProcessos; i++)
     {
-        pair<unsigned int, unsigned int>& pDados = aDados[i];
+        pair< int,  int>& pDados = aDados[i];
         cout << i + 1 << "\t" << pDados.first << "\t" << pDados.second << endl;
     }
 }
@@ -29,32 +29,32 @@ int main()
 {
 
     cout << "Informe o total de unidades: ";
-    cin >> uiTotalUnidades;
+    cin >> iTotalUnidades;
     cout << endl;
 
     cout << "Informe a quantidade de processos: ";
-    cin >> uiProcessos;
+    cin >> iProcessos;
     cout << endl;
 
-    uiSaldo = uiTotalUnidades;
+    iSaldo = iTotalUnidades;
 
-    for (int i = 0; i < uiProcessos; i++)
+    for (int i = 0; i < iProcessos; i++)
     {
         cout << endl << "Processo Num " << i + 1 << endl;;
 
-        unsigned int uiTem = 0;
+         int iTem = 0;
         cout << "Informe a quantidade que o processo tem: ";
-        cin >> uiTem;
+        cin >> iTem;
 
-        uiSaldo -= uiTem;
+        iSaldo -= iTem;
 
         cout << endl;
 
-        unsigned int uiMaximo = 0;
+         int iMaximo = 0;
         cout << "Informe o maximo: ";
-        cin >> uiMaximo;
+        cin >> iMaximo;
 
-        aDados.push_back(make_pair(uiTem, uiMaximo));
+        aDados.push_back(make_pair(iTem, iMaximo));
     }
 
     cout << "Processamento: " << endl;;
@@ -64,38 +64,45 @@ int main()
     bool bProcessou = false ;
     bool bSafe      = false;
 
-    while (true)
+    if (iSaldo < 0)
     {
-        bProcessou = false;
-
-        for (int i = 0; i < uiProcessos; i++)
+        bSafe = false;
+    }
+    else
+    {
+        while (true)
         {
-            pair<unsigned int, unsigned int>& pDados = aDados[i];
+            bProcessou = false;
 
-            if (pDados.first == 0 && pDados.second == 0) //Ja feito
-                continue;
-
-            if (uiSaldo + pDados.first >= pDados.second)
+            for (int i = 0; i < iProcessos; i++)
             {
-                uiSaldo -= (pDados.second - pDados.first);
-                pDados.first  = pDados.second;
+                pair< int, int>& pDados = aDados[i];
 
-                Mostra();
+                if (pDados.first == 0 && pDados.second == 0) //Ja feito
+                    continue;
 
-                uiSaldo += pDados.first;
-                pDados.second = 0;
-                pDados.first = pDados.second;
+                if (iSaldo + pDados.first >= pDados.second)
+                {
+                    iSaldo -= (pDados.second - pDados.first);
+                    pDados.first = pDados.second;
 
-                Mostra();
+                    Mostra();
 
-                bProcessou = true;
+                    iSaldo += pDados.first;
+                    pDados.second = 0;
+                    pDados.first = pDados.second;
+
+                    Mostra();
+
+                    bProcessou = true;
+                }
             }
-        }
 
-        if (bProcessou == false)
-        {
-            bSafe = uiSaldo == uiTotalUnidades;
-            break;
+            if (bProcessou == false)
+            {
+                bSafe = iSaldo == iTotalUnidades;
+                break;
+            }
         }
     }
 

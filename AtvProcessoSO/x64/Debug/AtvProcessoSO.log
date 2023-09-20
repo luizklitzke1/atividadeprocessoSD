@@ -1,5 +1,2 @@
 ﻿  AtvProcessoSO.cpp
-C:\Users\luizk\source\repos\AtvProcessoSO\AtvProcessoSO\AtvProcessoSO.cpp(21,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\luizk\source\repos\AtvProcessoSO\AtvProcessoSO\AtvProcessoSO.cpp(41,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\luizk\source\repos\AtvProcessoSO\AtvProcessoSO\AtvProcessoSO.cpp(70,27): warning C4018: '<': signed/unsigned mismatch
-  AtvProcessoSO.vcxproj -> C:\Users\luizk\source\repos\AtvProcessoSO\x64\Debug\AtvProcessoSO.exe
+  AtvProcessoSO.vcxproj -> C:\Users\luizk\OneDrive\Documentos\so\atividadeprocessoSD\x64\Debug\AtvProcessoSO.exe
